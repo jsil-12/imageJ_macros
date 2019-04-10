@@ -175,20 +175,22 @@ function binarize_skeleton(){
 
 function main(batchmode){
 	dir = "E";
+
+	xy = 50;
 	
 	//input_dir = "E:/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/input_batch_images_gfap_redoTest/";
 	//input_dir = "E:\\lab_files\\imageJ_macro_working_directory\\Gfap_S100b_Nestin\\input_batch_gfap_redoBASIC\\";
-	//input_dir = dir+":/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/input_gfap_v3_all/";
+	input_dir = dir+":/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/input_gfap_v3_all/";
 	
-	//output_dir = dir+":/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/output/gfap/feature_files/single_threshold/branch_features/150/"; //output features textfile directory
+	output_dir = dir+":/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/output/gfap/feature_files/single_threshold/branch_features/" + toString(xy)+"/"; //output features textfile directory
 	//output_dir = "C:/Users/joey_/Desktop/";
 	
 	//threshold_dir = dir+":/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/output/gfap/feature_files/single_threshold/threshold_files/"; //directory to output recorded lower / upper threshold values
 	//thresh = "Triangle"; //method to use for thresholding
 
-	input_dir = dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/Iba1_7D_input/";
 	//input_dir = dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/Iba1_7D_input/";
-	output_dir = dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/output/Iba1_set2/feature_files/single_threshold/branch_features/150/";
+	//input_dir = dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/Iba1_7D_input/";
+	//output_dir = dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/output/Iba1_set2/feature_files/single_threshold/branch_features/150/";
 	threshold_dir="";
 
 
@@ -196,7 +198,7 @@ function main(batchmode){
 	thresh = "Phansalkar";
 	startX = 0;
 	startY = 0;
-	xy = 150;
+	
 	numOffsets = 2;
 	autothresh = true;
 	local_threshold = true;

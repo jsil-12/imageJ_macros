@@ -67,7 +67,7 @@ function combine_roi(){
 function autolocal_threshold(threshtype,radius){
 	run("Select All");
 	run("Duplicate...", "title=1");
-	//run("Duplicate...", "title=2");
+	run("Duplicate...", "title=2");
 	selectWindow("1");
 	thresh = threshtype;
 	run("8-bit");
@@ -90,9 +90,11 @@ function set_threshold(threshpath){
 function threshold_measure(threshpath,autolocal,selection,radius){
 	if(autolocal){
 		autolocal_threshold(threshpath,radius);
-		//selectWindow("2");
+		selectWindow("2");
 		roiManager("select",selection);
 		roiManager("measure");
+		close();
+		
 	} else {
 		roiManager("select",selection);
 		set_threshold(threshpath);
@@ -305,11 +307,11 @@ function main(batchmode){
 	
 	_dir = 'E';
 
-	
-	// for astrocytes
-	//imagedir=_dir+":/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/input_gfap_v3_all/";
 	/*
-	imagedir=_dir+":/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/input_s100b_v3/";
+	// for astrocytes
+	imagedir=_dir+":/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/input_gfap_v3_all/";
+	
+	//imagedir=_dir+":/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/input_s100b_v3/";
 	outputdir=_dir+":/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/output/gfap/cluster_files/cluster_imagefiles/150/";
 	threshdir=_dir+":/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/output/gfap/feature_files/single_threshold/threshold_files/";
 	clusterdir=_dir+":/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/output/gfap/cluster_files/cluster_coordinates/single_threshold/150/";
@@ -317,17 +319,12 @@ function main(batchmode){
 
 
 	//for microglia
-
-	
 	imagedir=_dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/Iba1_7D_input/";
-
 	outputdir=_dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/output/Iba1_set2/cluster_files/cluster_imagefiles/150/";
 	threshdir=_dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/output/Iba1_set2/feature_files/single_threshold/threshold_files/";
 	clusterdir=_dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/output/Iba1_set2/cluster_files/cluster_coordinates/single_threshold/150/";
 	
-	
 	clustertypes = newArray("proximal","subtracted","focal","combined","unclustered");
-
 	//clustertypes = newArray("proximal");
 	
 	//distal_cluster="proximal";
@@ -345,9 +342,8 @@ function main(batchmode){
 	ID_check = newArray("JS12","JS13","JS14","JS16");
 
 	local_threshold=true;
-	//local_thresh_type = "Phansalkar"; //Phansalkar for astrocytes
 
-	local_thresh_type = "Phansalkar"; //"Phansalkar"; //Niblack for microglia
+	local_thresh_type = "Phansalkar"; //"Phansalkar"; 
 	radius = 60;
 	subtract = true; //subtract background
 	subtract_by = "100"; // amount to subtract by -- input as string for imageJ to interpret
@@ -428,7 +424,7 @@ function main(batchmode){
 }
 
 
-main(false);
+main(true);
 
 
 

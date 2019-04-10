@@ -180,7 +180,7 @@ function main(batchmode){
 	//inputPath = "C:\\Users\\joey\\Documents\\LabWork\\Staining\\immunofluorescense\\Gfap_Iba1_Ki67\\";
 	//outputPath = "C:\\Users\\joey\\Documents\\LabWork\\Staining\\immunofluorescense\\Gfap_Iba1_Ki67\\GFAP_Iba1_ki67_batch_output\\";
 
-	XY=150 //box pixel size
+	XY=100; //box pixel size
 	offset=true; //whether add an offset
 	numOffsets=2; //denotes level of overlap.. 2 = 50%, 3 = 66.6% overlap
 	//input = "D:/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/input_batch_images_gfap/";//input image directory
@@ -190,20 +190,21 @@ function main(batchmode){
 	
 	//input = dir+":/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/input_v3_/";
 	
-	/*
+	
 	input = dir+":/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/input_gfap_v3_all/";
-	output = dir+":/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/output/gfap/feature_files/single_threshold/fractal_dimension/datafiles/150/"; //output features textfile directory
+	output = dir+":/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/output/gfap/feature_files/single_threshold/fractal_dimension/datafiles/"+toString(XY); //output features textfile directory
 	threshDir = dir+":/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/output/gfap/feature_files/single_threshold/threshold_files/"; //directory to output recorded lower / upper threshold values
 	binary_dir = dir+":/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/output/gfap/feature_files/single_threshold/fractal_dimension/images/"
-	*/
+	
 
+	/*
 	input = dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/Iba1_7D_input/";
 
 	//input = dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/Iba1_7D_input/";
 	threshDir="";
 	output = dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/output/Iba1_set2/feature_files/single_threshold/fractal_dimension/datafiles/150/";
 	binary_dir = dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/output/Iba1_set2/feature_files/single_threshold/fractal_dimension/images/";
-
+	*/
 
 	
 	

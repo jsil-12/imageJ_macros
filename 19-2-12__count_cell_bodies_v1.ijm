@@ -22,7 +22,7 @@ function morphological_filtering2(){
 function autolocal_threshold(method,radius){
 	run("8-bit");
 	print(method);
-	print(radius);10
+	print(radius);
 	//stop;
 	run("Auto Local Threshold", "method="+method+" radius="+radius+" parameter_1=0 parameter_2=0 white");
 	//run("Auto Local Threshold", "method=Contrast radius=40 parameter_1=0 parameter_2=0 white");
@@ -134,7 +134,7 @@ function main(batchmode){
 
 	// ----- INPUT DIRECTORIES ------
 	//inputDir = "E:/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/output/gfap/cluster_files/cluster_imagefiles/150/proximal/cutout_image/";
-	//inputDir = "E:/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/input_s100b_v3/";
+	
 	//inputDir = "E:/lab_files/imageJ_macro_working_directory/Gfap_Iba1_ki67/GFAP_Iba1_ki67_batch_microglia/"
 
 	_dir = "E";
@@ -142,15 +142,19 @@ function main(batchmode){
 	//outputDir = _dir+":/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/output/gfap/cluster_files/cluster_imagefiles/150/proximal/count_data/";
 
 	//inputDir = _dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/Iba1_untreated_input/";
+
+	//inputDir = _dir+":/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/input_s100b_v3/";
+	//outputDir = _dir+":/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/output/gfap/whole_output/cell_counts/";
 	
 
 	cluster = "unclustered";
 	
-	inputDir = _dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/output/Iba1_set2/cluster_files/cluster_imagefiles/150/"+cluster+"/cutout_image_no_preprocessing/";
+	//inputDir = _dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/output/Iba1_set2/cluster_files/cluster_imagefiles/150/"+cluster+"/cutout_image_no_preprocessing/";
 	
-	//inputDir = _dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/Iba1_7D_input/";
-	outputDir = _dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/output/Iba1_set2/cluster_files/cluster_imagefiles/150/"+cluster+"/count_data/";   //feature_files/single_threshold/count_data/";
-	
+	inputDir = _dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/Iba1_7D_input/";
+	//outputDir = _dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/output/Iba1_set2/cluster_files/cluster_imagefiles/150/"+cluster+"/count_data/";   //feature_files/single_threshold/count_data/";
+
+	outputDir = _dir +":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/output/Iba1_set2/whole_output/count_data/"
 	
 	threshold_path = "None";
 
@@ -160,13 +164,8 @@ function main(batchmode){
 	subtract_amount = "50"; //"50" for astrocyte and microglia
 	despeckle = true; //false for astrocyte
 	contrast = false; //false for astrocyte
-	dilate = false;
-	number_of_dilations = 3;
 
 	autolocalthreshold=false;   //true for astrocyte false for microglia
-	//method = "Phansalker";
-	//radius = "55";
-	
 	
 	method="Phansalkar";
 	radius="60";
@@ -194,11 +193,6 @@ function main(batchmode){
 		}
 
 		run("Make Binary");
-		if(dilate){
-			for(i=0;i<number_of_dilations;i++){
-				run("Dilate");
-			}
-		}
 
 		size="15";
 		print(size);
@@ -231,6 +225,9 @@ function set_threshold(file,threshdir){
 	lower_upper=split(F,"_");
 	setThreshold(lower_upper[0],max);
 }
+
+
+
 
 //Global variables
 var collectGarbageInterval = 3; // the garbage is collected after n Images

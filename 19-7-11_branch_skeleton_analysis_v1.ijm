@@ -16,7 +16,8 @@ function correct_image(subtract,subtract_amount,despeck,contrast){
 function autolocal_threshold(threshtype, radius){
 	run("Select All");
 	run("Duplicate...", "title=1");
-	//run("Duplicate...", "title=2");
+	run("Duplicate...", "title=2");
+	
 	selectWindow("1");
 	thresh = threshtype;
 	run("8-bit");
@@ -24,8 +25,8 @@ function autolocal_threshold(threshtype, radius){
 	//run("Analyze Particles...", "include add");
 	run("Create Selection");
 	roiManager("Add");
-	selectWindow("1");
-	close();
+	//selectWindow("1");
+	//close();
 }
 
 function set_threshold(threshpath){
@@ -79,6 +80,7 @@ function clear_roi_manager(){
 }
 
 function calculate_percArea(roiID){
+	selectWindow("2");
 	getMinAndMax(min, max);
 	setThreshold(1, max+1);
 	run("Measure");
@@ -90,6 +92,8 @@ function calculate_percArea(roiID){
 	percArea = fore/back;
 	print(percArea);
 	run("Clear Results");
+	selectWindow("2");
+	close();
 	return newArray(percArea, fore, back);
 }
 
@@ -100,14 +104,14 @@ function main(batchmode){
 	_dir = "E";
 
 
-	cluster = "proximal";
+	cluster = "unclustered";
 
 	
-	//inputDir = _dir+":/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/output/gfap/cluster_files/cluster_imagefiles/150/proximal/cutout_image/";
-	inputDir = _dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/output/Iba1_set2/cluster_files/cluster_imagefiles/150/"+cluster+"/cutout_image/";
+	inputDir = _dir+":/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/output/gfap/cluster_files/cluster_imagefiles/150/"+cluster+"/cutout_image/";
+	//inputDir = _dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/output/Iba1_set2/cluster_files/cluster_imagefiles/150/"+cluster+"/cutout_image/";
 	
-	//outputDir = _dir+":/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/output/gfap/cluster_files/cluster_imagefiles/150/proximal/skeleton_data/";
-	outputDir = _dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/output/Iba1_set2/cluster_files/cluster_imagefiles/150/"+cluster+"/skeleton_data/";
+	outputDir = _dir+":/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/output/gfap/cluster_files/cluster_imagefiles/150/"+cluster+"/skeleton_data/";
+	//outputDir = _dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/output/Iba1_set2/cluster_files/cluster_imagefiles/150/"+cluster+"/skeleton_data/";
 	
 	set_threshold_path = "";
 
@@ -118,7 +122,7 @@ function main(batchmode){
 	subtract = true;
 	subtract_amount = "100";
 	contrast = true;
-	despeckle = false;
+	despeckle = true;
 	clearOutside = "False";
 
 	apply_image_corrections=false;
@@ -145,14 +149,21 @@ function main(batchmode){
 
 		print(file);
 		print("..Background Measures..");
+		
 		area_metrics = calculate_percArea(0);
 		
 		percArea = area_metrics[0];
 		fore = area_metrics[1];
 		back = area_metrics[2];
+
+		selectWindow("1");
+		
+		/*
 		print("..thresholded..");
 		run("Make Binary");
 		print("..Binarized..");
+		*/
+		run("Select All");
 		skeleton_analysis();
 		selectWindow("Results");
 		setResult("percArea", 0, percArea);

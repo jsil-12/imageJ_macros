@@ -177,7 +177,7 @@ function main(batch){
 	run("Set Measurements...", "area mean standard modal min centroid center perimeter bounding fit shape feret's integrated median skewness kurtosis area_fraction limit nan redirect=None decimal=3");
 	
 	//iArgs = split(gridsize, '=');
-	XY=150 //box pixel size
+	XY=100 //box pixel size
 	offset=true; //whether add an offset
 	numOffsets=2; //denotes level of overlap.. 2 = 50%, 3 = 66.6% overlap
 	//input = "D:/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/input_batch_images_gfap/";//input image directory
@@ -186,16 +186,15 @@ function main(batch){
 	//input = "E:/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/input_v3_extra2/";
 	//input = "E:/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/input_gfap_redo_fus/";
 
-	//input = "E:/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/input_gfap_v3_untreated/";
+	input = "E:/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/input_gfap_v3_all/";
 	//input = "E:/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/Iba1_7D_input/";
 
 	_dir = "E"
-	input = _dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/Iba1_7D_input/"
+	//input = _dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/Iba1_7D_input/"
+	//output = _dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/output/Iba1_set2/feature_files/single_threshold/features/150/"
 	
-	output = _dir+":/lab_files/imageJ_macro_working_directory/Iba1_ML_re/Iba1_set1_19-3-23/output/Iba1_set2/feature_files/single_threshold/features/150/"
 	
-	
-	//output = "E:/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/output/gfap/feature_files/single_threshold/features/150/"; //output features textfile directory
+	output = "E:/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/output/gfap/feature_files/single_threshold/features/"+toString(XY); //output features textfile directory
 	//threshDir = "E:/lab_files/imageJ_macro_working_directory/Gfap_S100b_Nestin/output/feature_files/single_threshold/threshold_files/"; //directory to output recorded lower / upper threshold values
 	local_thresh_type = "Phansalkar"; //"Phansalkar"; //Niblack for microglia
 	radius = 60;
